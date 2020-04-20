@@ -8,6 +8,9 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.image('backer', './assets/backer.png');
+        this.load.image('top', './assets/top.png');
+        this.load.image('part', './assets/part.png');
     }
 
     create() {
@@ -44,6 +47,20 @@ class Menu extends Phaser.Scene {
         // difficulty arrow settings
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        // background
+        this.backer = this.add.tileSprite(0, 0, 640, 480, 'backer').setOrigin(0, 0);
+
+        var particles = this.add.particles('part');
+        var emitter = particles.createEmitter({
+            x: 320,
+            y: 100,
+            speed: 400,
+            lifespan: { min: 1000, max: 2000 },
+            blendMode: 'ADD'
+        });
+
+        this.top = this.add.tileSprite(0, 0, 640, 480, 'top').setOrigin(0, 0);
+        
 
     }
 
